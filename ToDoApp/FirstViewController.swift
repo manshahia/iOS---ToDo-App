@@ -36,7 +36,7 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return toDoArray.count
     }
@@ -48,6 +48,25 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
 
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            
+            toDoArray.remove(at: indexPath.row)
+            table.reloadData()
+            UserDefaults.standard.set(toDoArray, forKey: "todoArray")
+        }
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
 
